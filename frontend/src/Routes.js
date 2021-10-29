@@ -7,6 +7,8 @@ import Login from "./containers/Login";
 import ResetPassword from "./containers/ResetPassword";
 import Signup from "./containers/Signup";
 
+import NewNote from "./containers/NewNote";
+
 export default function Routes() {
   return (
     <Switch>
@@ -15,6 +17,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/login">
         <Login />
+      </Route>
+      <Route exact path="/notes/new">
+        <NewNote />
       </Route>
       <Route exact path="/">
         <Home />
