@@ -15,9 +15,9 @@ export default function Notes() {
   const { id } = useParams();
   const history = useHistory();
   const [note, setNote] = useState(null);
-  console.log("🚀 ~ file: Notes.js ~ line 18 ~ Notes ~ note", note)
+  console.log("🚀 ~ file: Notes.js ~ line 18 ~ Notes ~ note", note);
   const [content, setContent] = useState("");
-  console.log("🚀 ~ file: Notes.js ~ line 20 ~ Notes ~ content", content)
+  console.log("🚀 ~ file: Notes.js ~ line 20 ~ Notes ~ content", content);
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -82,7 +82,7 @@ export default function Notes() {
     try {
       if (file.current) {
         attachment = await s3Upload(file.current);
-        await s3Delete(note.attachment)
+        await s3Delete(note.attachment);
       }
 
       await saveNote({
@@ -94,6 +94,10 @@ export default function Notes() {
       onError(e);
       setIsLoading(false);
     }
+  }
+
+  function deleteNote() {
+    return API.del("notes", `/notes/${id}`);
   }
 
   async function handleDelete(event) {
@@ -108,6 +112,15 @@ export default function Notes() {
     }
 
     setIsDeleting(true);
+
+    try {
+      await deleteNote();
+      await s3Delete(note.attachment);
+      history.push("/");
+    } catch (e) {
+      onError(e);
+      setIsDeleting(false);
+    }
   }
 
   return (
