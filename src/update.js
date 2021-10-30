@@ -2,12 +2,9 @@ import handler from "./util/handler";
 import dynamoDb from "./util/dynamodb";
 
 export const main = handler(async (event) => {
-  console.log("🚀 ~ file: update.js ~ line 5 ~ main ~ event", event.body);
-  const data = JSON.parse(JSON.stringify(event.body));
-  // const data = JSON.parse(event.body);
+  // const data = JSON.parse(JSON.stringify(event.body));
+  const data = JSON.parse(event.body);
 
-  //   const data = event.body;
-  console.log("🚀 ~ file: update.js ~ line 6 ~ main ~ data", data);
   const params = {
     TableName: process.env.TABLE_NAME,
     // 'Key' defines the partition key and sort key of the item to be updated
