@@ -11,6 +11,8 @@ export default class ApiStack extends sst.Stack {
 
     // Create the API
     this.api = new sst.Api(this, "Api", {
+      customDomain:
+        scope.stage === "prod" ? "api.my-serverless-app.com" : undefined,
       defaultAuthorizationType: "AWS_IAM",
       defaultFunctionProps: {
         environment: {
@@ -33,7 +35,7 @@ export default class ApiStack extends sst.Stack {
 
     // Show the API endpoint in the output
     this.addOutputs({
-      ApiEndpoint: this.api.url,
+      ApiEndpoint: this.api.customDomainUrl || this.api.url,
     });
   }
 }
