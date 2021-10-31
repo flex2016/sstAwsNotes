@@ -15,8 +15,11 @@ const config = {
     IDENTITY_POOL_ID: process.env.REACT_APP_IDENTITY_POOL_ID,
   },
   MAX_ATTACHMENT_SIZE: 5000000,
-  STRIPE_KEY:
-    "pk_test_51JpDLLHY4CTmYIsc0GxC4RHxNX4KH7e99iUA5Xw9yGMVXbcmjeLufztLj3DNG3nWEEMGkrrsOjX1ayBgqjsAkIB800sn9YhM1E",
+  STRIPE_KEY: process.env.REACT_APP_STRIPE_KEY,
+
+  social: {
+    FB: process.env.REACT_APP_FB,
+  },
 };
 
 export default config;
