@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { useHistory } from "react-router-dom";
-import {
-  FormText,
-  FormGroup,
-  FormControl,
-  FormLabel,
-} from "react-bootstrap";
+import { FormText, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../lib/hooksLib";
 import { onError } from "../lib/errorLib";
@@ -37,8 +32,13 @@ export default function ChangeEmail() {
 
     try {
       const user = await Auth.currentAuthenticatedUser();
-      await Auth.updateUserAttributes(user, { email: fields.email });
-      setCodeSent(true);
+      if (user.attributes["email_verified"] !== "false") {
+        await Auth.verifyCurrentUserAttribute("email");
+        setCodeSent(true);
+      } else {
+        await Auth.updateUserAttributes(user, { email: fields.email });
+        setCodeSent(true);
+      }
     } catch (error) {
       onError(error);
       setIsSendingCode(false);

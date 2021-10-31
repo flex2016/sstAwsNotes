@@ -31,7 +31,6 @@ export default function ChangePassword() {
 
     try {
       const currentUser = await Auth.currentAuthenticatedUser();
-      console.log("🚀 ~ file: ChangePassword.js ~ line 34 ~ handleChangeClick ~ currentUser", currentUser)
       await Auth.changePassword(
         currentUser,
         fields.oldPassword,
