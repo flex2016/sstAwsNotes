@@ -16,6 +16,9 @@ import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 export default function Routes() {
   return (
     <Switch>
+      <UnauthenticatedRoute exact path="/login/reset">
+        <ResetPassword />
+      </UnauthenticatedRoute>
       <UnauthenticatedRoute exact path="/login">
         <Login />
       </UnauthenticatedRoute>

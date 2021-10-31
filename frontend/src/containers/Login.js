@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import Form from "react-bootstrap/Form";
 import LoaderButton from "../components/LoaderButton";
@@ -12,7 +13,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [fields, handleFieldChange] = useFormFields({
     email: "",
-    password: ""
+    password: "",
   });
 
   function validateForm() {
@@ -53,6 +54,7 @@ export default function Login() {
             onChange={handleFieldChange}
           />
         </Form.Group>
+        <Link to="/login/reset">Forgot password?</Link>
         <LoaderButton
           block
           size="lg"
