@@ -20,8 +20,7 @@ const config = {
   social: {
     FB: process.env.REACT_APP_FB,
   },
-  SENTRY_DSN:
-    "https://ee95f413b50446ab83418cadbdceda81@o1056785.ingest.sentry.io/6043154",
+  SENTRY_DSN: process.env.REACT_APP_SENTRY_DSN,
 };
 
 export default config;
