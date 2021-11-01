@@ -6,6 +6,9 @@ import config from "./config";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { initSentry } from "./lib/errorLib";
+
+initSentry();
 
 Amplify.configure({
   Auth: {
